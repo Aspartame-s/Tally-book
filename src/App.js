@@ -2,17 +2,42 @@ import logo from './logo.svg';
 import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import PriceList from './components/ComponentName';
+import ViewTabs from './components/ViewTabs';
 const items = [
   {
     id: 1,
     title: '旅游消费',
     price: 200,
     date: '2022-3-12',
+    category: {
+      id: 1,
+      name: '旅游',
+      type: 'outcome',
+      iconName: 'airplane-outline'
+    }
+  },
+  {
+    id: 2,
+    title: '旅游消费2',
+    price: 400,
+    date: '2022-3-12',
+    category: {
+      id: 1,
+      name: '旅游',
+      type: 'outcome',
+      iconName: 'airplane-outline'
+    }
   }
 ]
-
+// var tab = 'list'
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      tab: 'list'
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -30,6 +55,12 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <ViewTabs activeTab={this.state.tab} onTabChange={(tabType) => {
+          this.setState({
+            tab: tabType
+          })
+        }} />
+        <PriceList items={items} handleModify={(item) => alert(item.id)} handleDelete={(item) => {alert(item.price)}} />
       </div>
     );
   }
