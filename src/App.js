@@ -4,6 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import PriceList from './components/ComponentName';
 import ViewTabs from './components/ViewTabs';
+import MonthPicker from './components/MonthPicker';
 const items = [
   {
     id: 1,
@@ -60,6 +61,7 @@ class App extends Component {
             tab: tabType
           })
         }} />
+        <MonthPicker year={2022} month={3} />
         <PriceList items={items} handleModify={(item) => alert(item.id)} handleDelete={(item) => {alert(item.price)}} />
       </div>
     );
