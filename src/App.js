@@ -1,48 +1,30 @@
 import logo from './logo.svg';
 import React, {Component} from 'react';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
-import PriceList from './components/ComponentName';
-import ViewTabs from './components/ViewTabs';
-import MonthPicker from './components/MonthPicker';
-const items = [
-  {
-    id: 1,
-    title: '旅游消费',
-    price: 200,
-    date: '2022-3-12',
-    category: {
-      id: 1,
-      name: '旅游',
-      type: 'outcome',
-      iconName: 'airplane-outline'
-    }
-  },
-  {
-    id: 2,
-    title: '旅游消费2',
-    price: 400,
-    date: '2022-3-12',
-    category: {
-      id: 1,
-      name: '旅游',
-      type: 'outcome',
-      iconName: 'airplane-outline'
-    }
-  }
-]
-// var tab = 'list'
+import Home from './containers/Home';
+
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tab: 'list'
+      tab: 'list',
+      year: 2022,
+      month: 3
     }
   }
+  onChangeDate = (y, m) => {
+    console.log(y, m)
+    this.setState({
+      year: y,
+      month: m
+    })
+  }
   render() {
+    const {year, month} = this.state
     return (
       <div className="App">
-        <header className="App-header">
+        <Home />
+        {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -61,8 +43,8 @@ class App extends Component {
             tab: tabType
           })
         }} />
-        <MonthPicker year={2022} month={3} />
-        <PriceList items={items} handleModify={(item) => alert(item.id)} handleDelete={(item) => {alert(item.price)}} />
+        <MonthPicker year={year} month={month} onChangeDate={(y, m) => this.onChangeDate(y, m)}  />
+        <PriceList items={items} handleModify={(item) => alert(item.id)} handleDelete={(item) => {alert(item.price)}} /> */}
       </div>
     );
   }
