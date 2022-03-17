@@ -31,6 +31,13 @@ const items = [
         price: 100000,
         date: '2022-05-08',
         cid: 2
+    },
+    {
+        id: 4,
+        title: '聚餐',
+        price: 200,
+        date: '2022-06-08',
+        cid: 3
     }
 ]
 const categorys = {
