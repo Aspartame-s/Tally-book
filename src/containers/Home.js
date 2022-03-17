@@ -15,7 +15,7 @@ const items = [
         id: 1,
         title: '旅游消费',
         price: 200,
-        date: '2022-03-12',
+        date: '2022-03-11',
         cid: 1
     },
     {
