@@ -58,6 +58,12 @@ const categorys = {
         name: '汉堡',
         type: 'outcome',
         iconName: 'fast-food-outline'
+    },
+    '4': {
+        id: 4,
+        name: '社交',
+        type: 'outcome',
+        iconName: 'people-outline'
     }
 }
 const newItem = {
