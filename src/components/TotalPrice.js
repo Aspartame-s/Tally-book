@@ -7,10 +7,10 @@ const TotalPrice = ({ inCome, outCome }) => {
         <React.Fragment>
             <div className="row" style={{ marginRight: '0' }}>
                 <div className="col">
-                    <div>收入</div><span>{inCome}</span>
+                    <div>收入</div><span className="income">{inCome}</span>
                 </div>
                 <div className="col">
-                    <div>支出</div><span>{outCome}</span>
+                    <div>支出</div><span className="outcome">{outCome}</span>
                 </div>
             </div>
         </React.Fragment>
