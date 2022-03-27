@@ -9,7 +9,11 @@ import MonthPicker from '../components/MonthPicker';
 import PropTypes from 'prop-types'
 import TotalPrice from '../components/TotalPrice';
 import CreateButton from '../components/CreateButton';
+import IonIcon from '@reacticons/ionicons'
+import { Tabs, Tab } from '../components/Tabs';
 
+
+const tabsText = ['list', 'chart']
 const items = [
     {
         id: 1,
@@ -107,16 +111,24 @@ class Home extends Component {
         })
     }
     handleModify = (item) => {
-      const modifyItems = this.state.items.map(modifyItem => {
-          if(modifyItem.id == item.id) {
-              return {...modifyItem, title: '修改标题'}
-          }else {
-              return modifyItem
-          }
-      })
-      this.setState({
-          items: modifyItems
-      })
+        const modifyItems = this.state.items.map(modifyItem => {
+            if (modifyItem.id == item.id) {
+                return { ...modifyItem, title: '修改标题' }
+            } else {
+                return modifyItem
+            }
+        })
+        this.setState({
+            items: modifyItems
+        })
+    }
+
+    // 新Tab栏处理事件
+    handleTabChange = (index) => {
+        console.log(index)
+        this.setState({
+            tabView: tabsText[index]
+        })
     }
     render() {
         const { items, currentDate, tabView } = this.state
@@ -151,16 +163,26 @@ class Home extends Component {
                     </div>
                 </header>
                 <div className="content-area py-3 px-3">
-                    <ViewTabs activeTab={tabView} onTabChange={(tabType) => {
+                    <Tabs activeIndex={0} handleTabChange={this.handleTabChange}>
+                        <Tab>
+                            <IonIcon name="list-circle-outline" style={{ fontSize: '20px' }}></IonIcon>
+                            列表模式
+                        </Tab>
+                        <Tab>
+                            <IonIcon name="pie-chart-outline" style={{ fontSize: '20px', marginRight: '2px', padding: '2px' }}></IonIcon>
+                            图表模式
+                        </Tab>
+                    </Tabs>
+                    {/* <ViewTabs activeTab={tabView} onTabChange={(tabType) => {
                         this.setState({
                             tabView: tabType
                         })
-                    }} />
+                    }} /> */}
                     <CreateButton createItem={this.createItem} />
                     {
                         tabView === 'list' ? <PriceList items={itemsWithCategary} handleDelete={this.handleDeletes} handleModify={this.handleModify} /> : <h1>这里是图表模式</h1>
                     }
-                    
+
                 </div>
             </React.Fragment>
 

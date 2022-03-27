@@ -1,51 +1,40 @@
 import logo from './logo.svg';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Home from './containers/Home';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Create from './containers/Create';
+import { flattenArr } from './utility'
+import { testCategory, testItems } from './testData'
+
+// console.log(flattenArr(testCategory))
+export const AppContext = React.createContext()
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tab: 'list',
-      year: 2022,
-      month: 3
+      items: flattenArr(testItems),
+      categories: flattenArr(testCategory)
     }
   }
-  onChangeDate = (y, m) => {
-    console.log(y, m)
-    this.setState({
-      year: y,
-      month: m
-    })
-  }
   render() {
-    const {year, month} = this.state
     return (
-      <div className="App">
-        <Home />
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <ViewTabs activeTab={this.state.tab} onTabChange={(tabType) => {
-          this.setState({
-            tab: tabType
-          })
-        }} />
-        <MonthPicker year={year} month={month} onChangeDate={(y, m) => this.onChangeDate(y, m)}  />
-        <PriceList items={items} handleModify={(item) => alert(item.id)} handleDelete={(item) => {alert(item.price)}} /> */}
-      </div>
+      <AppContext.Provider value={{
+        state: this.state
+      }}>
+        <BrowserRouter>
+          <div className="App">
+            <Routes>
+              <Route path="/" exact element={<Home />} />
+              <Route path="/create" element={<Create />}>
+                <Route path=":id" element={<Create />}></Route>
+              </Route>
+            </Routes>
+            {/* <Home /> */}
+          </div>
+        </BrowserRouter>
+      </AppContext.Provider>
     );
   }
 }

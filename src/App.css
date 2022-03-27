@@ -8,6 +8,16 @@ ul {
   text-align: center;
 }
 
+/* div {
+  text-align: center;
+} */
+
+label {
+  text-align: left;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
 .App-logo {
   height: 20vmin;
   pointer-events: none;

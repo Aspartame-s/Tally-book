@@ -11,16 +11,16 @@ class MonthPicker extends React.Component {
         }
     }
     componentDidMount() {
-        console.log(this.node)
+        // console.log(this.node)
         document.addEventListener('click', this.handleClick, false)
     }
     componentWillUnmount() {
         document.removeEventListener('click', this.handleClick, false)
     }
     handleClick = (event) => {
-        // if(this.node.contains(event.target)) {
-        //     return
-        // }
+        if(this.node.contains(event.target)) {
+            return
+        }
         this.setState({
             isOpen: false
         })

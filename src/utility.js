@@ -23,3 +23,10 @@ export const parseYearAndMonth = (str) => {
         month: date.getMonth() + 1
     }
 }
+
+export const flattenArr = (arr) => {
+    return arr.reduce((map, item) => {
+        map[item.id] = item
+        return map
+    }, {})
+}
