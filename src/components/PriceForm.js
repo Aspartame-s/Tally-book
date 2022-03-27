@@ -1,9 +1,9 @@
 import React from 'react';
+import withContext from '../withContext';
 
 class PriceForm extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props)
         this.state = {
             title: '',
             price: 0,
@@ -63,6 +63,7 @@ class PriceForm extends React.Component {
         })
     }
     render() {
+        console.log(this.props)
         // const {onSubmit, onCancel} = this.props
         const {status, tipText} = this.state
         return (
@@ -89,4 +90,4 @@ class PriceForm extends React.Component {
     }
 }
 
-export default PriceForm
+export default withContext(PriceForm)

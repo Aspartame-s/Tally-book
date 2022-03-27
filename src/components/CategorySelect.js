@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 class CategorySelect extends React.Component {
     constructor(props) {
         super(props)
-        console.log(props.selectedCategory)
-        
         this.state = {
             selectedCategoryId: props.selectedCategory && props.selectedCategory.id
         }

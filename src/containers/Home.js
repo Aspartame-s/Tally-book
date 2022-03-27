@@ -11,6 +11,7 @@ import TotalPrice from '../components/TotalPrice';
 import CreateButton from '../components/CreateButton';
 import IonIcon from '@reacticons/ionicons'
 import { Tabs, Tab } from '../components/Tabs';
+import withContext from '../withContext'
 
 
 const tabsText = ['list', 'chart']
@@ -131,6 +132,8 @@ class Home extends Component {
         })
     }
     render() {
+        // const {data} = this.props
+        console.log(this.props)
         const { items, currentDate, tabView } = this.state
         // console.log(currentDate)
         const itemsWithCategary = items.map(item => {
@@ -190,4 +193,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default withContext(Home)

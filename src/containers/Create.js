@@ -75,7 +75,7 @@ class Create extends React.Component {
             <AppContext.Consumer>
                 {
                     ({ state }) => {
-                        console.log(state)
+                        // console.log(state)
                         return (
                             <React.Fragment>
                                 {/* <h1>这是create组件</h1> */}
