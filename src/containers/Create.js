@@ -4,8 +4,7 @@ import CategorySelect from '../components/CategorySelect';
 import PriceForm from '../components/PriceForm';
 import { testCategory } from '../testData';
 import { Tabs, Tab } from '../components/Tabs';
-import { AppContext } from '../App';
-
+import withContext from '../withContext';
 const tabsText = ['income', 'outcome']
 const categories = [
     {
@@ -68,32 +67,25 @@ class Create extends React.Component {
             tabView: tabsText[index]
         })
     }
+    componentDidMount() {
+        console.log(this.props)
+    }
     render() {
         const { tabView } = this.state
         const filterCategory = testCategory.filter((category, index) => { return category.type === tabView })
         return (
-            <AppContext.Consumer>
-                {
-                    ({ state }) => {
-                        // console.log(state)
-                        return (
-                            <React.Fragment>
-                                {/* <h1>这是create组件</h1> */}
-                                <Tabs activeIndex={0} handleTabChange={this.handleTabChange}>
-                                    <Tab>收入</Tab>
-                                    <Tab>支出</Tab>
-                                </Tabs>
-                                <CategorySelect categories={filterCategory} selectedCategory={this.state.selectedCategory} selectCategory={this.selectCategory} />
-                                <PriceForm onSubmit={this.submit} onCancel={this.cancel} />
-                            </React.Fragment>
-                        )
-                    }
-                }
-
-            </AppContext.Consumer>
+            <React.Fragment>
+                {/* <h1>这是create组件</h1> */}
+                <Tabs activeIndex={0} handleTabChange={this.handleTabChange}>
+                    <Tab>收入</Tab>
+                    <Tab>支出</Tab>
+                </Tabs>
+                <CategorySelect categories={filterCategory} selectedCategory={this.state.selectedCategory} selectCategory={this.selectCategory} />
+                <PriceForm onSubmit={this.submit} onCancel={this.cancel} />
+            </React.Fragment>
         )
     }
 }
 
 
-export default Create
+export default withContext(Create)

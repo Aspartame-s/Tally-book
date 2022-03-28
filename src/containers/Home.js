@@ -12,77 +12,15 @@ import CreateButton from '../components/CreateButton';
 import IonIcon from '@reacticons/ionicons'
 import { Tabs, Tab } from '../components/Tabs';
 import withContext from '../withContext'
+import {withRouter} from 'react-router-dom'
 
 
 const tabsText = ['list', 'chart']
-const items = [
-    {
-        id: 1,
-        title: '旅游消费',
-        price: 200,
-        date: '2022-03-12',
-        cid: 1
-    },
-    {
-        id: 2,
-        title: '旅游消费2',
-        price: 400,
-        date: '2022-04-12',
-        cid: 1
-    },
-    {
-        id: 3,
-        title: '工资',
-        price: 100000,
-        date: '2022-05-08',
-        cid: 2
-    },
-    {
-        id: 4,
-        title: '聚餐',
-        price: 200,
-        date: '2022-06-08',
-        cid: 3
-    }
-]
-const categorys = {
-    '1': {
-        id: 1,
-        name: '旅游',
-        type: 'outcome',
-        iconName: 'airplane-outline'
-    },
-    '2': {
-        id: 2,
-        name: '工资',
-        type: 'income',
-        iconName: 'magnet-outline'
-    },
-    '3': {
-        id: 3,
-        name: '汉堡',
-        type: 'outcome',
-        iconName: 'fast-food-outline'
-    },
-    '4': {
-        id: 4,
-        name: '社交',
-        type: 'outcome',
-        iconName: 'people-outline'
-    }
-}
-const newItem = {
-    id: 4,
-    title: '餐饮',
-    price: 88,
-    date: '2022-01-01',
-    cid: 3
-}
+
 class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            items,
             currentDate: parseYearAndMonth(),
             tabView: 'list'
         }
@@ -96,32 +34,38 @@ class Home extends Component {
             }
         })
     }
+    // 创建新的条目
     createItem = () => {
-        items.unshift(newItem)
-        this.setState({
-            items
-        })
+        // items.unshift(newItem)
+        // this.setState({
+        //     items
+        // })
+        this.props.history.push('/create')
     }
     handleDeletes = (item) => {
-        const id = item.id
-        const newItems = this.state.items.filter((ii) => {
-            return ii.id !== id
-        })
-        this.setState({
-            items: newItems
-        })
+        // const id = item.id
+        // const newItems = this.state.items.filter((ii) => {
+        //     return ii.id !== id
+        // })
+        // this.setState({
+        //     items: newItems
+        // })
+        this.props.actions.deleteItem(item)
+        
     }
+    // 修改条目
     handleModify = (item) => {
-        const modifyItems = this.state.items.map(modifyItem => {
-            if (modifyItem.id == item.id) {
-                return { ...modifyItem, title: '修改标题' }
-            } else {
-                return modifyItem
-            }
-        })
-        this.setState({
-            items: modifyItems
-        })
+        this.props.history.push({pathname: `/edit/${item.id}`, state: {res: item}})
+        // const modifyItems = this.state.items.map(modifyItem => {
+        //     if (modifyItem.id == item.id) {
+        //         return { ...modifyItem, title: '修改标题' }
+        //     } else {
+        //         return modifyItem
+        //     }
+        // })
+        // this.setState({
+        //     items: modifyItems
+        // })
     }
 
     // 新Tab栏处理事件
@@ -132,19 +76,22 @@ class Home extends Component {
         })
     }
     render() {
-        // const {data} = this.props
-        console.log(this.props)
-        const { items, currentDate, tabView } = this.state
-        // console.log(currentDate)
-        const itemsWithCategary = items.map(item => {
-            item.category = categorys[item.cid]
-            return item
+        const { data } = this.props
+        const {items, categories} = data
+        const { currentDate, tabView } = this.state
+        const itemsWithCategary = Object.keys(items).map(id => {
+            items[id].category = categories[items[id].cid]
+            return items[id]
         }).filter(item2 => {
             return item2.date.includes(`${currentDate.year}-${autoFill(currentDate.month)}`)
         })
         let totalIncome = 0, toatlOutcome = 0
-        itemsWithCategary.forEach((item) => {
-            if (item.category.type === 'income') {
+        console.log(itemsWithCategary)
+        // itemsWithCategary.forEach(item => {
+        //     console.log(item.category.type)
+        // })
+        itemsWithCategary.forEach(item => {
+            if (item.category.type === 'outcome') {
                 totalIncome += item.price
             } else {
                 toatlOutcome += item.price
@@ -193,4 +140,4 @@ class Home extends Component {
     }
 }
 
-export default withContext(Home)
+export default withRouter(withContext(Home))

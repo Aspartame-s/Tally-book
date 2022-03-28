@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import React, { Component } from 'react';
 import './App.css';
 import Home from './containers/Home';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Create from './containers/Create';
 import { flattenArr } from './utility'
 import { testCategory, testItems } from './testData'
@@ -17,23 +17,30 @@ class App extends Component {
       items: flattenArr(testItems),
       categories: flattenArr(testCategory)
     }
+    this.actions = {
+      deleteItem: (item) => {
+        delete this.state.items[item.id]
+        this.setState({
+          items: this.state.items
+        })
+      }
+    }
   }
   render() {
     return (
       <AppContext.Provider value={{
-        state: this.state
+        state: this.state,
+        actions: this.actions
       }}>
-        <BrowserRouter>
+        <Router>
           <div className="App">
-            <Routes>
-              <Route path="/" exact element={<Home />} />
-              <Route path="/create" element={<Create />}>
-                <Route path=":id" element={<Create />}></Route>
-              </Route>
-            </Routes>
-            {/* <Home /> */}
+            {/* <div className="container pb-5"> */}
+            <Route path="/" exact component={Home} />
+            <Route path="/create" component={Create} />
+            <Route path="/edit/:id" component={Create} />
+            {/* </div> */}
           </div>
-        </BrowserRouter>
+        </Router>
       </AppContext.Provider>
     );
   }
