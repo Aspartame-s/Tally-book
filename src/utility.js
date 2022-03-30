@@ -17,7 +17,7 @@ export const judgeActive = (active, date) => {
 }
 
 export const parseYearAndMonth = (str) => {
-    const date = str ? new Date(str) : new Date
+    const date = str ? new Date(str) : new Date()
     return {
         year: date.getFullYear(),
         month: date.getMonth() + 1
@@ -29,4 +29,8 @@ export const flattenArr = (arr) => {
         map[item.id] = item
         return map
     }, {})
+}
+
+export const ID = () => {
+    return '_' + Math.random().toString(36).substr(2,9)
 }

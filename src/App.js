@@ -4,7 +4,7 @@ import './App.css';
 import Home from './containers/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Create from './containers/Create';
-import { flattenArr } from './utility'
+import { flattenArr, ID, parseYearAndMonth } from './utility'
 import { testCategory, testItems } from './testData'
 
 // console.log(flattenArr(testCategory))
@@ -24,10 +24,22 @@ class App extends Component {
           items: this.state.items
         })
       },
-      createItem: () => {
-        
+      createItem: (data, cid) => {
+        const newId = ID()
+        const parseDate = parseYearAndMonth(data.date)
+        data.monthCategory = `${parseDate.year}-${parseDate.month}`
+        data.id = newId
+        var timestamp = new Date(data.date).getTime()
+        const newItem = {...data, timestamp: timestamp, cid: cid}
+        console.log(newItem)
+        this.setState({
+          items: {...this.state.items, [newId]: newItem}
+        })
+        // console.log(parseDate)
+        // console.log('data:', data)
+        // console.log('cid:', cid)
       }
-    }
+    } 
   }
   render() {
     return (

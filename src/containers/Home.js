@@ -88,9 +88,9 @@ class Home extends Component {
         let totalIncome = 0, toatlOutcome = 0
         itemsWithCategary.forEach(item => {
             if (item.category.type === 'income') {
-                totalIncome += item.price
+                totalIncome += Number(item.price)
             } else {
-                toatlOutcome += item.price
+                toatlOutcome += Number(item.price)
             }
         })
         return (

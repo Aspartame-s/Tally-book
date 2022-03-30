@@ -18,7 +18,7 @@ class Create extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedCategory: null,
+            selectedCategory: null, //选择记账种类的id 也就是cid
             tabView: 'income'
         }
     }
@@ -28,8 +28,14 @@ class Create extends React.Component {
         })
         console.log(id)
     }
-    submit = (params) => {
-        console.log('params:', params)
+    submit = (data) => {
+        
+        if(this.state.selectedCategory) {
+            this.props.actions.createItem(data, this.state.selectedCategory)
+            this.props.history.push('/')
+        }else {
+            alert('请选择种类')
+        }
     }
     cancel = (id) => {
         this.props.history.push('/')
