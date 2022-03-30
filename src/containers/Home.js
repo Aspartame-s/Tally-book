@@ -86,12 +86,8 @@ class Home extends Component {
             return item2.date.includes(`${currentDate.year}-${autoFill(currentDate.month)}`)
         })
         let totalIncome = 0, toatlOutcome = 0
-        console.log(itemsWithCategary)
-        // itemsWithCategary.forEach(item => {
-        //     console.log(item.category.type)
-        // })
         itemsWithCategary.forEach(item => {
-            if (item.category.type === 'outcome') {
+            if (item.category.type === 'income') {
                 totalIncome += item.price
             } else {
                 toatlOutcome += item.price

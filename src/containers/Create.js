@@ -5,29 +5,9 @@ import PriceForm from '../components/PriceForm';
 import { testCategory } from '../testData';
 import { Tabs, Tab } from '../components/Tabs';
 import withContext from '../withContext';
+import { withRouter } from 'react-router-dom';
 const tabsText = ['income', 'outcome']
-const categories = [
-    {
-        id: 1,
-        category: '旅行',
-        iconName: 'airplane-outline'
-    },
-    {
-        id: 2,
-        category: '喝酒',
-        iconName: 'beer-outline'
-    },
-    {
-        id: 3,
-        category: '房租',
-        iconName: 'home-outline'
-    },
-    {
-        id: 4,
-        category: '饮食',
-        iconName: 'restaurant-outline'
-    },
-]
+
 
 // const selectedCategory = {
 //     id: 1,
@@ -38,20 +18,13 @@ class Create extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            categories,
-            selectedCategory: {
-                id: 0,
-                name: '选中'
-            },
+            selectedCategory: null,
             tabView: 'income'
         }
     }
     selectCategory = (id) => {
         this.setState({
-            selectedCategory: {
-                id,
-                name: '选中'
-            }
+            selectedCategory: id
         })
         console.log(id)
     }
@@ -59,6 +32,7 @@ class Create extends React.Component {
         console.log('params:', params)
     }
     cancel = (id) => {
+        this.props.history.push('/')
         console.log(id)
     }
     handleTabChange = (index) => {
@@ -67,11 +41,18 @@ class Create extends React.Component {
             tabView: tabsText[index]
         })
     }
-    componentDidMount() {
+    componentWillMount() {
         console.log(this.props)
+        if(this.props.location.state !== undefined) {
+            const initItems = this.props.location.state.res
+            // console.log(this.props.location.state.res)
+            this.setState({
+                initItems
+            })
+        }
     }
     render() {
-        const { tabView } = this.state
+        const { tabView, initItems } = this.state
         const filterCategory = testCategory.filter((category, index) => { return category.type === tabView })
         return (
             <React.Fragment>
@@ -81,11 +62,11 @@ class Create extends React.Component {
                     <Tab>支出</Tab>
                 </Tabs>
                 <CategorySelect categories={filterCategory} selectedCategory={this.state.selectedCategory} selectCategory={this.selectCategory} />
-                <PriceForm onSubmit={this.submit} onCancel={this.cancel} />
+                <PriceForm onSubmit={this.submit} onCancel={this.cancel} initItems={initItems} />
             </React.Fragment>
         )
     }
 }
 
 
-export default withContext(Create)
+export default withRouter(withContext(Create))

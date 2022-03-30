@@ -46,12 +46,12 @@ export const testCategory = [
         category: '工资',
         type: 'income',
         iconName: 'layers-outline'
-    },
+    }
 ]
 
 export const testItems = [    
     {
-      "title": "buy stuff for kitten",
+      "title": "买东西",
       "price": 100,
       "date": "2022-03-15",
       "monthCategory": "2022-03",

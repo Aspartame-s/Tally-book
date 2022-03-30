@@ -23,6 +23,9 @@ class App extends Component {
         this.setState({
           items: this.state.items
         })
+      },
+      createItem: () => {
+        
       }
     }
   }
