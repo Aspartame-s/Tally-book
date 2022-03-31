@@ -41,7 +41,7 @@ class App extends Component {
       },
       updateItem: (data, cid) => {
         const editId = data.id
-        const editItem = {...data, cid}
+        const editItem = {...data, cid, timestamp: new Date(data.date).getTime()}
         this.setState({
           items: {...this.state.items, [editId]: editItem}
         })
