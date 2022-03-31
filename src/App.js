@@ -38,6 +38,15 @@ class App extends Component {
         // console.log(parseDate)
         // console.log('data:', data)
         // console.log('cid:', cid)
+      },
+      updateItem: (data, cid) => {
+        const editId = data.id
+        const editItem = {...data, cid}
+        this.setState({
+          items: {...this.state.items, [editId]: editItem}
+        })
+        // console.log(data)
+        // console.log(cid)
       }
     } 
   }

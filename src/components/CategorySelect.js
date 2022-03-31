@@ -16,16 +16,15 @@ class CategorySelect extends React.Component {
         this.props.selectCategory(id)
     }
     render() {
-        const { categories, selectedCategory } = this.props
+        const { categories, selectedCategory } = this.props //selectedCategory传过来的cid
         const { selectedCategoryId } = this.state
-        
         return (
             <div className="category-select-component">
                 <div className="row">
                     {
                         categories.map((category, index) => {
-                            const activeClassName = selectedCategoryId === category.id ? 'category-item col-3 active' : 'category-item col-3'
-                            const activeColor = selectedCategoryId === category.id ? '#0d6efd' : ''
+                            const activeClassName = selectedCategoryId == category.id ? 'category-item col-3 active' : 'category-item col-3'
+                            const activeColor = selectedCategoryId == category.id ? '#0d6efd' : ''
                             return (
                                 <div className={activeClassName} key={index} onClick={() => {this.selectCategory(category.id)}}>
                                     {/* <div className="active">{category.id}</div> */}

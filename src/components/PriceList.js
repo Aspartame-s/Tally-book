@@ -5,7 +5,7 @@ const PriceList = ({ items, handleModify, handleDelete }) => {
     return (
         <ul>
             {
-                items.map((item, index) => (
+                items.map((item, index) => {return (
                     <li key={index} className="list-group-item d-flex justify-content-between align-items-center" >
                         <div className="col-1">
                             <IonIcon name={item.category.iconName} color='blue' size="large" style={{ padding: '2px' }}>
@@ -26,7 +26,7 @@ const PriceList = ({ items, handleModify, handleDelete }) => {
                             </IonIcon>
                         </span>
                     </li>
-                ))
+                )})
             }
         </ul>
     )

@@ -40,7 +40,7 @@ class Home extends Component {
         // this.setState({
         //     items
         // })
-        this.props.history.push('/create')
+        this.props.history.push({pathname:'/create', state: {isEdit: 0}})
     }
     handleDeletes = (item) => {
         // const id = item.id
@@ -55,7 +55,8 @@ class Home extends Component {
     }
     // 修改条目
     handleModify = (item) => {
-        this.props.history.push({pathname: `/edit/${item.id}`, state: {res: item}})
+        // this.props.history.push(`/edit/${item.id}`)
+        this.props.history.push({pathname: `/edit/${item.id}`, state: {res: item, isEdit: 1}})
         // const modifyItems = this.state.items.map(modifyItem => {
         //     if (modifyItem.id == item.id) {
         //         return { ...modifyItem, title: '修改标题' }
