@@ -21,34 +21,37 @@ class App extends Component {
     }
     
     this.actions = {
-      getInitData: () => {
+      getInitData: async () => {
          // console.log(this.state.currentDate.year)
          const filtertItems = `/items?monthCategory=${parseYearAndMonth().year}-${parseYearAndMonth().month}&_sort=timestamp&_order=desc`
-         const promiseArr = [axios.get('/categories'), axios.get(filtertItems)]
-         Promise.all(promiseArr).then(res => {
-           const [ categories, items ] = res
+         const results = await Promise.all([axios.get('/categories'), axios.get(filtertItems)])
+         console.log(results)
+        //  Promise.all(promiseArr).then(res => {
+           const [ categories, items ] = results
            console.log(items)
            console.log(categories)
-           // console.log(res)
+          //  console.log(res)
            this.setState({
              items: flattenArr(items.data),
              categories: flattenArr(categories.data)
            })
-         })
+        //  })
       },
-      selectYearAndMonth: (year, month) => {
-        const filtertItems = `/items?monthCategory=${year}-${month}&_sort=timestamp&_order=desc`
-        axios.get(filtertItems).then(res => {
+      selectYearAndMonth: async (year, month) => {
+        const results = await axios.get(`/items?monthCategory=${year}-${month}&_sort=timestamp&_order=desc`) 
+        // axios.get(filtertItems).then(res => {
           this.setState({
-            items: flattenArr(res.data),
+            items: flattenArr(results.data),
             currentDate: {year, month}
           })
-        })
+        // })
       },
       deleteItem: (item) => {
-        delete this.state.items[item.id]
-        this.setState({
-          items: this.state.items
+        axios.delete(`/items/${item.id}`).then(res => {
+          delete this.state.items[item.id]
+          this.setState({
+            items: this.state.items
+          })
         })
       },
       createItem: (data, cid) => {
