@@ -21,18 +21,25 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentDate: parseYearAndMonth(),
+            // currentDate: parseYearAndMonth(),
             tabView: 'list'
         }
     }
+
+    componentDidMount() {
+    //    console.log(this.props)
+       this.props.actions.getInitData()
+    }
+
     onChangeDate = (y, m) => {
         console.log(y, m)
-        this.setState({
-            currentDate: {
-                year: y,
-                month: m
-            }
-        })
+        this.props.actions.selectYearAndMonth(y, m)
+        // this.setState({
+        //     currentDate: {
+        //         year: y,
+        //         month: m
+        //     }
+        // })
     }
     // 创建新的条目
     createItem = () => {
@@ -78,13 +85,11 @@ class Home extends Component {
     }
     render() {
         const { data } = this.props
-        const {items, categories} = data
-        const { currentDate, tabView } = this.state
+        const {items, categories, currentDate} = data
+        const { tabView } = this.state
         const itemsWithCategary = Object.keys(items).map(id => {
             items[id].category = categories[items[id].cid]
             return items[id]
-        }).filter(item2 => {
-            return item2.date.includes(`${currentDate.year}-${autoFill(currentDate.month)}`)
         })
         let totalIncome = 0, toatlOutcome = 0
         itemsWithCategary.forEach(item => {

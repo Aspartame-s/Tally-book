@@ -24,6 +24,7 @@ export const parseYearAndMonth = (str) => {
     }
 }
 
+//数据接口扁平化
 export const flattenArr = (arr) => {
     return arr.reduce((map, item) => {
         map[item.id] = item

@@ -4,6 +4,7 @@ import './App.css';
 import Home from './containers/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Create from './containers/Create';
+import axios from 'axios';
 import { flattenArr, ID, parseYearAndMonth } from './utility'
 import { testCategory, testItems } from './testData'
 
@@ -14,10 +15,36 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: flattenArr(testItems),
-      categories: flattenArr(testCategory)
+      items: {},
+      categories: {},
+      currentDate: parseYearAndMonth()
     }
+    
     this.actions = {
+      getInitData: () => {
+         // console.log(this.state.currentDate.year)
+         const filtertItems = `/items?monthCategory=${parseYearAndMonth().year}-${parseYearAndMonth().month}&_sort=timestamp&_order=desc`
+         const promiseArr = [axios.get('/categories'), axios.get(filtertItems)]
+         Promise.all(promiseArr).then(res => {
+           const [ categories, items ] = res
+           console.log(items)
+           console.log(categories)
+           // console.log(res)
+           this.setState({
+             items: flattenArr(items.data),
+             categories: flattenArr(categories.data)
+           })
+         })
+      },
+      selectYearAndMonth: (year, month) => {
+        const filtertItems = `/items?monthCategory=${year}-${month}&_sort=timestamp&_order=desc`
+        axios.get(filtertItems).then(res => {
+          this.setState({
+            items: flattenArr(res.data),
+            currentDate: {year, month}
+          })
+        })
+      },
       deleteItem: (item) => {
         delete this.state.items[item.id]
         this.setState({

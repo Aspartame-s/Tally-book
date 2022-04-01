@@ -54,7 +54,7 @@ export const testItems = [
       "title": "买东西",
       "price": 100,
       "date": "2022-03-15",
-      "monthCategory": "2022-03",
+      "monthCategory": "2022-3",
       "id": "_kly1klf4g",
       "cid": "1",
       "timestamp": 1534291200000
@@ -63,7 +63,7 @@ export const testItems = [
       "title": "这是我的工资",
       "price": 20000,
       "date": "2022-03-18",
-      "monthCategory": "2022-03",
+      "monthCategory": "2022-3",
       "id": "_bd16bjeen",
       "cid": "5",
       "timestamp": 1534550400000
@@ -72,7 +72,7 @@ export const testItems = [
       "title": "和哥们一起喝酒",
       "price": 300,
       "date": "2022-03-20",
-      "monthCategory": "2022-03",
+      "monthCategory": "2022-3",
       "id": "_jjfice21k",
       "cid": "2",
       "timestamp": 1534723200000
@@ -81,7 +81,7 @@ export const testItems = [
       "title": "理财收入",
       "price": 1000,
       "date": "2022-03-11",
-      "monthCategory": "2022-03",
+      "monthCategory": "2022-3",
       "id": "_1fg1wme63",
       "cid": "5",
       "timestamp": 1533945600000
@@ -90,7 +90,7 @@ export const testItems = [
       "title": "理财收入",
       "price": 300,
       "date": "2022-03-15",
-      "monthCategory": "2022-03",
+      "monthCategory": "2022-3",
       "id": "_qryggm5y8",
       "cid": "5",
       "timestamp": 1534291200000
@@ -99,7 +99,7 @@ export const testItems = [
       "title": "请别人吃饭",
       "price": 300,
       "date": "2022-03-15",
-      "monthCategory": "2022-03",
+      "monthCategory": "2022-3",
       "id": "_qryggm511",
       "cid": "3",
       "timestamp": 1534291200000
