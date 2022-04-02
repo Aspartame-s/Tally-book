@@ -20,7 +20,7 @@ class PriceForm extends React.Component {
             console.log(this.props.editItem)
             console.log(this.state.title)
             const title = this.state.title ? this.state.title : this.props.editItem.title
-            const price = this.state.price ? this.state.price : this.props.editItem.price
+            const price = this.state.price ? Number(this.state.price) : Number(this.props.editItem.price)
             const date = this.state.date ? this.state.date : this.props.editItem.date
             const updateData = {...this.props.editItem, title, price, date}
             console.log(updateData)
@@ -60,7 +60,7 @@ class PriceForm extends React.Component {
             }
             const submitData = {
                 title: this.state.title,
-                price: this.state.price,
+                price: Number(this.state.price),
                 date: this.state.date
             }
             this.props.onSubmit(submitData, isEdit)

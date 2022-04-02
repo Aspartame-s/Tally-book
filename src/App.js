@@ -35,7 +35,31 @@ class App extends Component {
              items: flattenArr(items.data),
              categories: flattenArr(categories.data)
            })
+           return {
+            items: flattenArr(items.data),
+            categories: flattenArr(categories.data)
+           }
         //  })
+      },
+      getEditData: async (id) => {
+        const promiseArr = [axios.get('/categories')]
+        promiseArr.push(axios.get(`/items/${id}`))
+        const results = await Promise.all(promiseArr)
+        const [categories, items] = results
+        if(id) {
+          this.setState({
+            items: {...this.state.items, [id]: items.data},
+            categories: flattenArr(categories.data)
+          })
+        }else {
+          this.setState({
+            categories: flattenArr(categories.data)
+          })
+        }
+        return {
+          categories: flattenArr(categories.data),
+          items: items ? items.data : null 
+        }
       },
       selectYearAndMonth: async (year, month) => {
         const results = await axios.get(`/items?monthCategory=${year}-${month}&_sort=timestamp&_order=desc`) 
@@ -54,26 +78,30 @@ class App extends Component {
           })
         })
       },
-      createItem: (data, cid) => {
+      createItem: async (data, cid) => {
         const newId = ID()
         const parseDate = parseYearAndMonth(data.date)
         data.monthCategory = `${parseDate.year}-${parseDate.month}`
         data.id = newId
         var timestamp = new Date(data.date).getTime()
-        const newItem = {...data, timestamp: timestamp, cid: cid}
+        // const newItem = {...data, timestamp: timestamp, cid: cid}
+        const newItem = await axios.post('/items', {...data, timestamp: timestamp, cid: cid})
         console.log(newItem)
         this.setState({
-          items: {...this.state.items, [newId]: newItem}
+          items: {...this.state.items, [newId]: newItem.data}
         })
         // console.log(parseDate)
         // console.log('data:', data)
         // console.log('cid:', cid)
       },
-      updateItem: (data, cid) => {
+      updateItem: async (data, cid) => {
+        console.log(data)
         const editId = data.id
-        const editItem = {...data, cid, timestamp: new Date(data.date).getTime()}
+        console.log(new Date(data.date))
+        // const editItem = {...data, cid, timestamp: new Date(data.date).getTime()}
+        const editItem = await axios.put(`/items/${editId}`, {...data, cid, timestamp: new Date(data.date).getTime(), })
         this.setState({
-          items: {...this.state.items, [editId]: editItem}
+          items: {...this.state.items, [editId]: editItem.data}
         })
         // console.log(data)
         // console.log(cid)

@@ -23,8 +23,8 @@ class CategorySelect extends React.Component {
                 <div className="row">
                     {
                         categories.map((category, index) => {
-                            const activeClassName = selectedCategoryId == category.id ? 'category-item col-3 active' : 'category-item col-3'
-                            const activeColor = selectedCategoryId == category.id ? '#0d6efd' : ''
+                            const activeClassName = selectedCategory == category.id ? 'category-item col-3 active' : 'category-item col-3'
+                            const activeColor = selectedCategory == category.id ? '#0d6efd' : ''
                             return (
                                 <div className={activeClassName} key={index} onClick={() => {this.selectCategory(category.id)}}>
                                     {/* <div className="active">{category.id}</div> */}

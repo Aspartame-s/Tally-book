@@ -20,7 +20,7 @@ export class Tabs extends React.Component {
         return (
             <ul className="nav nav-tabs nav-fill my-4">
                 {React.Children.map(children, (child, index) => {
-                    const activeClassName = active === index ? 'nav-link active' : 'nav-link'
+                    const activeClassName = activeIndex === index ? 'nav-link active' : 'nav-link'
                     return (
                         <li className="nav-item">
                             <a href="#" className={activeClassName} onClick={() => {this.handleChange(index)}}>

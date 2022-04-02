@@ -15,13 +15,13 @@ const tabsText = ['income', 'outcome']
 // }
 
 class Create extends React.Component {
-    constructor(props) {
+    constructor(props) {    
         super(props)
         const {id} = this.props.match.params
         const {items, categories} = props.data
         this.state = {
             selectedCategory: id && items[id] ? items[id].category.id : null, //选择记账种类的id 也就是cid
-            tabView: id && items[id] ? items[id].category.type : 'income'
+            // tabView: id && items[id] ? items[id].category.type : 'income'
         }
     }
     selectCategory = (id) => {
@@ -29,6 +29,29 @@ class Create extends React.Component {
             selectedCategory: id
         })
         console.log(id)
+    }
+    componentDidMount() {
+        if(this.props.location.state !== undefined) {
+            const isEdit = this.props.location.state.isEdit
+            this.setState({
+                isEdit
+            })
+        }
+        const {id} = this.props.match.params
+        if(id) {
+            this.props.actions.getEditData(id).then(res => {
+                console.log(res)
+                const {items, categories} = res
+                this.setState({
+                    selectedCategory: id ? items.cid : null,
+                    tabView: id ? categories[items.cid].type : 'income'
+                })
+            })
+        }else {
+            this.setState({
+                tabView: 'income'
+            })
+        }
     }
     submit = (data, isEdit) => {
         if(isEdit) {
@@ -47,39 +70,33 @@ class Create extends React.Component {
     }
     cancel = (id) => {
         this.props.history.push('/')
-        console.log(id)
     }
     handleTabChange = (index) => {
-        console.log(index)
         this.setState({
             tabView: tabsText[index]
         })
     }
-    componentWillMount() {
-        console.log(this.props)
-        if(this.props.location.state !== undefined) {
-            const initItems = this.props.location.state.res
-            const isEdit = this.props.location.state.isEdit
-            // console.log(this.props.location.state.res)
-            this.setState({
-                initItems,
-                isEdit
-            })
-        }
-    }
-    // componentDidMount() {
-    //     console.log(this.state.isEdit)
-    //     if(this.state.isEdit) {
-
+    // componentWillMount() {
+    //     console.log(this.props)
+    //     if(this.props.location.state !== undefined) {
+    //         const initItems = this.props.location.state.res
+    //         const isEdit = this.props.location.state.isEdit
+    //         // console.log(this.props.location.state.res)
+    //         this.setState({
+    //             initItems,
+    //             isEdit
+    //         })
     //     }
     // }
     render() {
+        console.log(this.state.selectedCategory)
         const { tabView, isEdit } = this.state
         const filterCategory = testCategory.filter((category, index) => { return category.type === tabView })
         const {id} = this.props.match.params
         const editItem = id && this.props.data.items[id] ? this.props.data.items[id] : {}
         // const cid = editItem ? editItem.cid : null
         const tabIndex = tabsText.findIndex(text => text === this.state.tabView)
+        console.log(tabIndex)
         return (
             <React.Fragment>
                 {/* <h1>这是create组件</h1> */}

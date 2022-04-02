@@ -28,7 +28,10 @@ class Home extends Component {
 
     componentDidMount() {
     //    console.log(this.props)
-       this.props.actions.getInitData()
+    console.log(123)
+       this.props.actions.getInitData().then(res => {
+           console.log(res)
+       })
     }
 
     onChangeDate = (y, m) => {
@@ -86,6 +89,7 @@ class Home extends Component {
     render() {
         const { data } = this.props
         const {items, categories, currentDate} = data
+        console.log(data)
         const { tabView } = this.state
         const itemsWithCategary = Object.keys(items).map(id => {
             items[id].category = categories[items[id].cid]

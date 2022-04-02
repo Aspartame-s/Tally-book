@@ -33,8 +33,35 @@
       "date": "2022-04-15",
       "monthCategory": "2022-4",
       "id": "_qryggm511",
-      "cid": "3",
-      "timestamp": 1534291200000
+      "cid": 2,
+      "timestamp": 1649980800000
+    },
+    {
+      "title": "去广州旅游",
+      "price": 5000,
+      "date": "2022-09-01",
+      "monthCategory": "2022-4",
+      "id": "_4624kdahh",
+      "timestamp": 1661990400000,
+      "cid": 1
+    },
+    {
+      "title": "房租",
+      "price": 5000,
+      "date": "2022-04-02",
+      "monthCategory": "2022-4",
+      "id": "_0g5ffyy18",
+      "timestamp": 1648857600000,
+      "cid": 3
+    },
+    {
+      "title": "工资",
+      "price": 100000,
+      "date": "2022-04-16",
+      "monthCategory": "2022-4",
+      "id": "_fty49r1b8",
+      "timestamp": 1650067200000,
+      "cid": 8
     }
   ],
   "categories": [
