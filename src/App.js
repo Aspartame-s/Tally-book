@@ -97,9 +97,10 @@ class App extends Component {
       updateItem: async (data, cid) => {
         console.log(data)
         const editId = data.id
-        console.log(new Date(data.date))
+        console.log(new Date(data.date).getFullYear())
+        const monthCategory = new Date(data.date).getFullYear() + '-' + (new Date(data.date).getMonth() + 1)
         // const editItem = {...data, cid, timestamp: new Date(data.date).getTime()}
-        const editItem = await axios.put(`/items/${editId}`, {...data, cid, timestamp: new Date(data.date).getTime(), })
+        const editItem = await axios.put(`/items/${editId}`, {...data, cid, timestamp: new Date(data.date).getTime(), monthCategory })
         this.setState({
           items: {...this.state.items, [editId]: editItem.data}
         })

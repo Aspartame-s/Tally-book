@@ -12,11 +12,11 @@
     {
       "title": "理财收入",
       "price": 1000,
-      "date": "2022-04-11",
-      "monthCategory": "2022-4",
+      "date": "2022-08-08",
+      "monthCategory": "2022-8",
       "id": "_1fg1wme63",
       "cid": "5",
-      "timestamp": 1533945600000
+      "timestamp": 1659916800000
     },
     {
       "title": "理财收入",
@@ -37,15 +37,6 @@
       "timestamp": 1649980800000
     },
     {
-      "title": "去广州旅游",
-      "price": 5000,
-      "date": "2022-09-01",
-      "monthCategory": "2022-4",
-      "id": "_4624kdahh",
-      "timestamp": 1661990400000,
-      "cid": 1
-    },
-    {
       "title": "房租",
       "price": 5000,
       "date": "2022-04-02",
@@ -57,10 +48,10 @@
     {
       "title": "工资",
       "price": 100000,
-      "date": "2022-04-16",
+      "date": "2022-04-15",
       "monthCategory": "2022-4",
       "id": "_fty49r1b8",
-      "timestamp": 1650067200000,
+      "timestamp": 1649980800000,
       "cid": 8
     }
   ],
