@@ -142,8 +142,8 @@ class Home extends Component {
                     {
                         tabView === 'list' ? <PriceList items={itemsWithCategary} handleDelete={this.handleDeletes} handleModify={this.handleModify} /> : 
                         (<React.Fragment>
-                            <PieCharts pieChartData={pieChartDataWithOutcome}></PieCharts>
-                            <PieCharts pieChartData={pieChartDataWithIncome}></PieCharts>
+                            <PieCharts pieChartData={pieChartDataWithOutcome} title="支出图表"></PieCharts>
+                            <PieCharts pieChartData={pieChartDataWithIncome} title="收入图表"></PieCharts>
                         </React.Fragment>)
                     }
 
