@@ -2,7 +2,7 @@ import logo from '../logo.svg';
 import React, { Component } from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { autoFill, range, judgeActive, parseYearAndMonth } from '../utility.js';
+import { autoFill, range, judgeActive, parseYearAndMonth, getPieChartData } from '../utility.js';
 import PriceList from '../components/PriceList';
 import ViewTabs from '../components/ViewTabs';
 import MonthPicker from '../components/MonthPicker';
@@ -13,6 +13,7 @@ import IonIcon from '@reacticons/ionicons'
 import { Tabs, Tab } from '../components/Tabs';
 import withContext from '../withContext'
 import {withRouter} from 'react-router-dom'
+import PieCharts from '../components/Piechart';
 
 
 const tabsText = ['list', 'chart']
@@ -89,12 +90,15 @@ class Home extends Component {
     render() {
         const { data } = this.props
         const {items, categories, currentDate} = data
-        console.log(data)
+        console.log(items)
         const { tabView } = this.state
         const itemsWithCategary = Object.keys(items).map(id => {
             items[id].category = categories[items[id].cid]
             return items[id]
         })
+        const pieChartDataWithOutcome = getPieChartData(itemsWithCategary, 'outcome')
+        const pieChartDataWithIncome = getPieChartData(itemsWithCategary, 'income')
+        console.log(itemsWithCategary)
         let totalIncome = 0, toatlOutcome = 0
         itemsWithCategary.forEach(item => {
             if (item.category.type === 'income') {
@@ -136,7 +140,11 @@ class Home extends Component {
                     }} /> */}
                     <CreateButton createItem={this.createItem} />
                     {
-                        tabView === 'list' ? <PriceList items={itemsWithCategary} handleDelete={this.handleDeletes} handleModify={this.handleModify} /> : <h1>这里是图表模式</h1>
+                        tabView === 'list' ? <PriceList items={itemsWithCategary} handleDelete={this.handleDeletes} handleModify={this.handleModify} /> : 
+                        (<React.Fragment>
+                            <PieCharts pieChartData={pieChartDataWithOutcome}></PieCharts>
+                            <PieCharts pieChartData={pieChartDataWithIncome}></PieCharts>
+                        </React.Fragment>)
                     }
 
                 </div>

@@ -28,7 +28,7 @@
       "timestamp": 1534291200000
     },
     {
-      "title": "请别人吃饭",
+      "title": "聚餐喝酒",
       "price": 300,
       "date": "2022-04-15",
       "monthCategory": "2022-4",
@@ -53,6 +53,33 @@
       "id": "_fty49r1b8",
       "timestamp": 1649980800000,
       "cid": 8
+    },
+    {
+      "title": "请人喝酒",
+      "price": 500,
+      "date": "2022-04-03",
+      "monthCategory": "2022-4",
+      "id": "_9x9ey2nyq",
+      "timestamp": 1648944000000,
+      "cid": 2
+    },
+    {
+      "title": "理财",
+      "price": 5000,
+      "date": "2022-04-12",
+      "monthCategory": "2022-4",
+      "id": "_cmrlppvh3",
+      "timestamp": 1649721600000,
+      "cid": 5
+    },
+    {
+      "title": "兼职",
+      "price": 20000,
+      "date": "2022-04-28",
+      "monthCategory": "2022-4",
+      "id": "_d0kbk89oo",
+      "timestamp": 1651104000000,
+      "cid": 7
     }
   ],
   "categories": [

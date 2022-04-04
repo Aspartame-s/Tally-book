@@ -35,3 +35,26 @@ export const flattenArr = (arr) => {
 export const ID = () => {
     return '_' + Math.random().toString(36).substr(2,9)
 }
+
+//改造piechart所需要的数据结构算法
+export const getPieChartData = (data, type) => {
+    var pieChartData = {}
+    data.filter(res => res.category.type === type).forEach(item => {
+        if(pieChartData[item.cid]) {
+            //当前的pieChartData不为空
+            pieChartData[item.cid].value += item.price
+            pieChartData[item.cid].items.push(item.id)
+        }else {
+            // 如果pieChartData为obj类型不用做去重，可通过id作为对象的key值
+            pieChartData[item.cid] = {
+                name: item.category.category,
+                value: item.price * 1,
+                items: [item.id]
+            }
+        }
+    })
+    pieChartData = Object.keys(pieChartData).map(id => {
+        return pieChartData[id]
+    })
+    return pieChartData
+}
