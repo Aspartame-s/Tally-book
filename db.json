@@ -80,6 +80,42 @@
       "id": "_d0kbk89oo",
       "timestamp": 1651104000000,
       "cid": 7
+    },
+    {
+      "title": "社交",
+      "price": 2000,
+      "date": "2022-04-11",
+      "monthCategory": "2022-4",
+      "id": "_c1icm1i01",
+      "timestamp": 1649635200000,
+      "cid": 6
+    },
+    {
+      "title": "迪士尼",
+      "price": 4000,
+      "date": "2022-04-15",
+      "monthCategory": "2022-4",
+      "id": "_lltv5g5m7",
+      "timestamp": 1649980800000,
+      "cid": 1
+    },
+    {
+      "title": "聚餐1",
+      "price": 600,
+      "date": "2022-04-29",
+      "monthCategory": "2022-4",
+      "id": "_xqvldgptr",
+      "timestamp": 1651190400000,
+      "cid": 4
+    },
+    {
+      "title": "去青岛旅游",
+      "price": 10000,
+      "date": "2022-07-07",
+      "monthCategory": "2022-7",
+      "id": "_chy53zvbv",
+      "timestamp": 1657152000000,
+      "cid": 1
     }
   ],
   "categories": [
