@@ -46,6 +46,42 @@ export const testCategory = [
         category: '工资',
         type: 'income',
         iconName: 'layers-outline'
+    },
+    {
+      id: 9,
+      category: '交通',
+      type: 'outcome',
+      iconName: 'train-outline'
+    },
+    {
+      id: 10,
+      category: '运动',
+      type: 'outcome',
+      iconName: 'basketball-outline'
+    },
+    {
+      id: 11,
+      category: '演唱会',
+      type: 'outcome',
+      iconName: 'headset-outline'
+    },
+    {
+      id: 12,
+      category: '修理',
+      type: 'outcome',
+      iconName: 'hammer-outline'
+    },
+    {
+      id: 13,
+      category: '游戏',
+      type: 'outcome',
+      iconName: 'game-controller-outline'
+    },
+    {
+      id: 14,
+      category: '汽车',
+      type: 'outcome',
+      iconName: 'car-sport-outline'
     }
 ]
 

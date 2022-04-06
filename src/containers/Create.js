@@ -6,7 +6,7 @@ import { testCategory } from '../testData';
 import { Tabs, Tab } from '../components/Tabs';
 import withContext from '../withContext';
 import { withRouter } from 'react-router-dom';
-const tabsText = ['income', 'outcome']
+const tabsText = [ 'outcome', 'income']
 
 
 // const selectedCategory = {
@@ -19,6 +19,7 @@ class Create extends React.Component {
         super(props)
         const {id} = this.props.match.params
         const {items, categories} = props.data
+        console.log(categories)
         this.state = {
             selectedCategory: id && items[id] ? items[id].category.id : null, //选择记账种类的id 也就是cid
             // tabView: id && items[id] ? items[id].category.type : 'income'
@@ -44,12 +45,12 @@ class Create extends React.Component {
                 const {items, categories} = res
                 this.setState({
                     selectedCategory: id ? items.cid : null,
-                    tabView: id ? categories[items.cid].type : 'income'
+                    tabView: id ? categories[items.cid].type : 'outcome'
                 })
             })
         }else {
             this.setState({
-                tabView: 'income'
+                tabView: 'outcome'
             })
         }
     }
@@ -91,6 +92,9 @@ class Create extends React.Component {
     render() {
         console.log(this.state.selectedCategory)
         const { tabView, isEdit } = this.state
+        const {categories} = this.props.data
+        console.log(categories)
+        // const filterCategory = Object.keys(categories).map(id => categories[id]).filter((category, index) => { return category.type === tabView })
         const filterCategory = testCategory.filter((category, index) => { return category.type === tabView })
         const {id} = this.props.match.params
         const editItem = id && this.props.data.items[id] ? this.props.data.items[id] : {}
@@ -101,8 +105,8 @@ class Create extends React.Component {
             <React.Fragment>
                 {/* <h1>这是create组件</h1> */}
                 <Tabs activeIndex={tabIndex} handleTabChange={this.handleTabChange}>
-                    <Tab>收入</Tab>
                     <Tab>支出</Tab>
+                    <Tab>收入</Tab>
                 </Tabs>
                 <CategorySelect categories={filterCategory} selectedCategory={this.state.selectedCategory} selectCategory={this.selectCategory} />
                 <PriceForm onSubmit={this.submit} onCancel={this.cancel} editItem={editItem} isEdit={isEdit} />

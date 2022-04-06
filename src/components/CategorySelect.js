@@ -18,13 +18,15 @@ class CategorySelect extends React.Component {
     render() {
         const { categories, selectedCategory } = this.props //selectedCategory传过来的cid
         const { selectedCategoryId } = this.state
+        console.log(categories)
         return (
             <div className="category-select-component">
                 <div className="row">
                     {
                         categories.map((category, index) => {
-                            const activeClassName = selectedCategory == category.id ? 'category-item col-3 active' : 'category-item col-3'
+                            const activeClassName = selectedCategory == category.id ? 'category-item col-3 active mb-4' : 'category-item col-3 mb-4'
                             const activeColor = selectedCategory == category.id ? '#0d6efd' : ''
+                            console.log(activeColor)
                             return (
                                 <div className={activeClassName} key={index} onClick={() => {this.selectCategory(category.id)}}>
                                     {/* <div className="active">{category.id}</div> */}
@@ -32,7 +34,7 @@ class CategorySelect extends React.Component {
                                     <IonIcon name={category.iconName} color='blue' size="large" style={{ padding: '2px', color: activeColor }}>
 
                                     </IonIcon>
-                                    {category.testId}
+                                    <div style={{color: activeColor}}>{category.category}</div>
                                 </div>
                             )
                         })
