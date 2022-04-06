@@ -2,6 +2,9 @@
   "name": "tally-book",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "dependencies": {
     "@reacticons/ionicons": "^6.0.2",
     "@testing-library/jest-dom": "^5.16.2",
@@ -15,10 +18,12 @@
     "react-scripts": "5.0.0",
     "recharts": "^2.1.9",
     "styled-components": "^5.3.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "json-server": "^0.17.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"npm run mock\"",
+    "start": "node server.js",
+    "dev": "concurrently \"react-scripts start\" \"npm run mock\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -46,8 +51,7 @@
     "concurrently": "^7.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "jest-watch-typeahead": "^0.6.5",
-    "json-server": "^0.17.0"
+    "jest-watch-typeahead": "^0.6.5"
   },
   "proxy": "http://localhost:3004"
 }
