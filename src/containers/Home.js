@@ -90,7 +90,6 @@ class Home extends Component {
     render() {
         const { data } = this.props
         const {items, categories, currentDate} = data
-        console.log(items)
         const { tabView } = this.state
         const itemsWithCategary = Object.keys(items).map(id => {
             items[id].category = categories[items[id].cid]
@@ -98,7 +97,6 @@ class Home extends Component {
         })
         const pieChartDataWithOutcome = getPieChartData(itemsWithCategary, 'outcome')
         const pieChartDataWithIncome = getPieChartData(itemsWithCategary, 'income')
-        console.log(itemsWithCategary)
         let totalIncome = 0, toatlOutcome = 0
         itemsWithCategary.forEach(item => {
             if (item.category.type === 'income') {

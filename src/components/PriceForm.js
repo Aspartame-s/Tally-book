@@ -13,17 +13,13 @@ class PriceForm extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(this.props)
         const isEdit = this.props.isEdit
         if(isEdit) {
             //edit
-            console.log(this.props.editItem)
-            console.log(this.state.title)
             const title = this.state.title ? this.state.title : this.props.editItem.title
             const price = this.state.price ? Number(this.state.price) : Number(this.props.editItem.price)
             const date = this.state.date ? this.state.date : this.props.editItem.date
             const updateData = {...this.props.editItem, title, price, date}
-            console.log(updateData)
             this.props.onSubmit(updateData, isEdit)
         }else {
             //create
@@ -69,19 +65,16 @@ class PriceForm extends React.Component {
     }
  
     handleTitle = (e) => {
-        console.log(e.target.value)
         this.setState({
             title: e.target.value
         })
     }
     handlePrice = (e) => {
-        console.log(e.target.value)
         this.setState({
             price: e.target.value
         })
     }
     handleDate = (e) => {
-        console.log(e.target.value)
         this.setState({
             date: e.target.value
         })

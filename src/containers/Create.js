@@ -8,18 +8,11 @@ import withContext from '../withContext';
 import { withRouter } from 'react-router-dom';
 const tabsText = [ 'outcome', 'income']
 
-
-// const selectedCategory = {
-//     id: 1,
-//     name: '选中'
-// }
-
 class Create extends React.Component {
     constructor(props) {    
         super(props)
         const {id} = this.props.match.params
         const {items, categories} = props.data
-        console.log(categories)
         this.state = {
             selectedCategory: id && items[id] ? items[id].category.id : null, //选择记账种类的id 也就是cid
             // tabView: id && items[id] ? items[id].category.type : 'income'
@@ -29,7 +22,6 @@ class Create extends React.Component {
         this.setState({
             selectedCategory: id
         })
-        console.log(id)
     }
     componentDidMount() {
         if(this.props.location.state !== undefined) {
@@ -41,7 +33,6 @@ class Create extends React.Component {
         const {id} = this.props.match.params
         if(id) {
             this.props.actions.getEditData(id).then(res => {
-                console.log(res)
                 const {items, categories} = res
                 this.setState({
                     selectedCategory: id ? items.cid : null,
@@ -77,30 +68,15 @@ class Create extends React.Component {
             tabView: tabsText[index]
         })
     }
-    // componentWillMount() {
-    //     console.log(this.props)
-    //     if(this.props.location.state !== undefined) {
-    //         const initItems = this.props.location.state.res
-    //         const isEdit = this.props.location.state.isEdit
-    //         // console.log(this.props.location.state.res)
-    //         this.setState({
-    //             initItems,
-    //             isEdit
-    //         })
-    //     }
-    // }
     render() {
-        console.log(this.state.selectedCategory)
         const { tabView, isEdit } = this.state
         const {categories} = this.props.data
-        console.log(categories)
         // const filterCategory = Object.keys(categories).map(id => categories[id]).filter((category, index) => { return category.type === tabView })
         const filterCategory = testCategory.filter((category, index) => { return category.type === tabView })
         const {id} = this.props.match.params
         const editItem = id && this.props.data.items[id] ? this.props.data.items[id] : {}
         // const cid = editItem ? editItem.cid : null
         const tabIndex = tabsText.findIndex(text => text === this.state.tabView)
-        console.log(tabIndex)
         return (
             <React.Fragment>
                 {/* <h1>这是create组件</h1> */}

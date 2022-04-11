@@ -11,7 +11,6 @@ class MonthPicker extends React.Component {
         }
     }
     componentDidMount() {
-        // console.log(this.node)
         document.addEventListener('click', this.handleClick, false)
     }
     componentWillUnmount() {
@@ -26,7 +25,6 @@ class MonthPicker extends React.Component {
         })
     }
     toggleOpen = (e) => {
-        // console.log(this.node)
         e.preventDefault()
         this.setState({
             isOpen: !this.state.isOpen
