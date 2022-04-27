@@ -32,7 +32,7 @@
     "eject": "react-scripts eject",
     "mock": "json-server --watch db.json --port 3004"
   },
-  "homepage": "https://aspartame-s.github.io/Tally-book/",
+  "homepage": "https://aspartame-s.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",
