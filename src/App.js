@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import React, { Component } from 'react';
 import './App.css';
 import Home from './containers/Home';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { HashRouter as Router, Route } from 'react-router-dom'
 import Create from './containers/Create';
 import axios from 'axios';
 import { flattenArr, ID, parseYearAndMonth } from './utility'
