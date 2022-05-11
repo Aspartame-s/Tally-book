@@ -28,7 +28,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-    //    console.log(this.props)
+       console.log(this.props)
     console.log(123)
        this.props.actions.getInitData().then(res => {
            console.log(res)
@@ -89,6 +89,7 @@ class Home extends Component {
     }
     render() {
         const { data } = this.props
+        console.log(this.props)
         const {items, categories, currentDate} = data
         const { tabView } = this.state
         const itemsWithCategary = Object.keys(items).map(id => {

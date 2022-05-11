@@ -24,6 +24,7 @@ class Create extends React.Component {
         })
     }
     componentDidMount() {
+        console.log(this.props.location)
         if(this.props.location.state !== undefined) {
             const isEdit = this.props.location.state.isEdit
             this.setState({
@@ -64,6 +65,7 @@ class Create extends React.Component {
         this.props.history.push('/')
     }
     handleTabChange = (index) => {
+        console.log(123)
         this.setState({
             tabView: tabsText[index]
         })
@@ -75,6 +77,7 @@ class Create extends React.Component {
         const filterCategory = testCategory.filter((category, index) => { return category.type === tabView })
         const {id} = this.props.match.params
         const editItem = id && this.props.data.items[id] ? this.props.data.items[id] : {}
+        console.log(editItem)
         // const cid = editItem ? editItem.cid : null
         const tabIndex = tabsText.findIndex(text => text === this.state.tabView)
         return (

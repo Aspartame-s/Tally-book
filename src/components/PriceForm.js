@@ -20,6 +20,9 @@ class PriceForm extends React.Component {
             const price = this.state.price ? Number(this.state.price) : Number(this.props.editItem.price)
             const date = this.state.date ? this.state.date : this.props.editItem.date
             const updateData = {...this.props.editItem, title, price, date}
+            console.log(title)
+            console.log({...this.props.editItem})
+            console.log(updateData)
             this.props.onSubmit(updateData, isEdit)
         }else {
             //create

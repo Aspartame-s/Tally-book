@@ -23,9 +23,9 @@ export class Tabs extends React.Component {
                     const activeClassName = activeIndex === index ? 'nav-link active' : 'nav-link'
                     return (
                         <li className="nav-item">
-                            <a href="#" className={activeClassName} onClick={() => {this.handleChange(index)}}>
+                            <div className={activeClassName} onClick={() => {this.handleChange(index)}}>
                                 {child}
-                            </a>
+                            </div>
                         </li>
                     )
                 })}

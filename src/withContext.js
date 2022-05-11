@@ -1,6 +1,8 @@
 import React from 'react'
 import { AppContext } from './App'
 
+
+//高阶组件
 const withContext = (Component) => {
     return (props) => (
         <AppContext.Consumer>
