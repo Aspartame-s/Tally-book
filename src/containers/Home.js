@@ -1,6 +1,7 @@
 import logo from '../logo.svg';
 import React, { Component } from 'react';
 import '../App.css';
+import './home.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { autoFill, range, judgeActive, parseYearAndMonth, getPieChartData } from '../utility.js';
 import PriceList from '../components/PriceList';
@@ -12,7 +13,7 @@ import CreateButton from '../components/CreateButton';
 import IonIcon from '@reacticons/ionicons'
 import { Tabs, Tab } from '../components/Tabs';
 import withContext from '../withContext'
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import PieCharts from '../components/Piechart';
 
 
@@ -28,11 +29,11 @@ class Home extends Component {
     }
 
     componentDidMount() {
-       console.log(this.props)
-    console.log(123)
-       this.props.actions.getInitData().then(res => {
-           console.log(res)
-       })
+        console.log(this.props)
+        console.log(123)
+        this.props.actions.getInitData().then(res => {
+            console.log(res)
+        })
     }
 
     onChangeDate = (y, m) => {
@@ -51,7 +52,7 @@ class Home extends Component {
         // this.setState({
         //     items
         // })
-        this.props.history.push({pathname:'/create', state: {isEdit: 0}})
+        this.props.history.push({ pathname: '/create', state: { isEdit: 0 } })
     }
     handleDeletes = (item) => {
         // const id = item.id
@@ -62,12 +63,12 @@ class Home extends Component {
         //     items: newItems
         // })
         this.props.actions.deleteItem(item)
-        
+
     }
     // 修改条目
     handleModify = (item) => {
         // this.props.history.push(`/edit/${item.id}`)
-        this.props.history.push({pathname: `/edit/${item.id}`, state: {res: item, isEdit: 1}})
+        this.props.history.push({ pathname: `/edit/${item.id}`, state: { res: item, isEdit: 1 } })
         // const modifyItems = this.state.items.map(modifyItem => {
         //     if (modifyItem.id == item.id) {
         //         return { ...modifyItem, title: '修改标题' }
@@ -90,7 +91,7 @@ class Home extends Component {
     render() {
         const { data } = this.props
         console.log(this.props)
-        const {items, categories, currentDate} = data
+        const { items, categories, currentDate } = data
         const { tabView } = this.state
         const itemsWithCategary = Object.keys(items).map(id => {
             items[id].category = categories[items[id].cid]
@@ -139,13 +140,17 @@ class Home extends Component {
                     }} /> */}
                     <CreateButton createItem={this.createItem} />
                     {
-                        tabView === 'list' ? <PriceList items={itemsWithCategary} handleDelete={this.handleDeletes} handleModify={this.handleModify} /> : 
-                        (<React.Fragment>
-                            <PieCharts pieChartData={pieChartDataWithOutcome} title="支出图表"></PieCharts>
-                            <PieCharts pieChartData={pieChartDataWithIncome} title="收入图表"></PieCharts>
-                        </React.Fragment>)
+                        tabView === 'list' ? <PriceList items={itemsWithCategary} handleDelete={this.handleDeletes} handleModify={this.handleModify} /> :
+                            (<React.Fragment>
+                                <PieCharts pieChartData={pieChartDataWithOutcome} title="支出图表"></PieCharts>
+                                <PieCharts pieChartData={pieChartDataWithIncome} title="收入图表"></PieCharts>
+                            </React.Fragment>)
                     }
 
+                </div>
+                <div className="footer">
+                    <a href="https://beian.miit.gov.cn/" target="_blank">备案号：</a>
+                    <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2022016076号-1</a>
                 </div>
             </React.Fragment>
 
