@@ -3,11 +3,11 @@
     bottom: 0; */
     width: 100%;
     height: 50px;
-    /* background-color: pink; */
+    background-color: pink;
     display: flex;
     align-items: flex-end;
     justify-content: center;
 }
 .content-area {
-    min-height: 60vh;
+    min-height: 100vh!important;
 }
